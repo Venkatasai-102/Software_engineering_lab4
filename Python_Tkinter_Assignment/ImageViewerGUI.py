@@ -1,12 +1,9 @@
 ####### REQUIRED IMPORTS FROM THE PREVIOUS ASSIGNMENT #######
 from my_package.model import InstanceSegmentationModel
-from my_package.data.dataset import Dataset
-from my_package.analysis.visualize import plot_visualization
-from my_package.data.transforms.blur import BlurImage
-from my_package.data.transforms.rotate import RotateImage
-from my_package.data.transforms.rescale import RescaleImage
-from my_package.data.transforms.flip import FlipImage
-from my_package.data.transforms.crop import CropImage
+from my_package.data import Dataset
+from my_package.model import InstanceSegmentationModel
+from my_package.analysis import plot_visualization
+from my_package.data.transforms import BlurImage, RotateImage, RescaleImage, FlipImage, CropImage
 from PIL import Image
 
 ####### ADD THE ADDITIONAL IMPORTS FOR THIS ASSIGNMENT HERE #######

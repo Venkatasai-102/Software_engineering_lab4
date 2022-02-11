@@ -1,5 +1,7 @@
 #Imports
-
+import numpy as np
+from PIL import Image
+import json_lines
 
 class Dataset(object):
     '''
@@ -13,14 +15,18 @@ class Dataset(object):
             transforms: list of transforms (class instances)
                         For instance, [<class 'RandomCrop'>, <class 'Rotate'>]
         '''
-        
-        
+        self.pth_to_file = annotation_file
+        self.trnsfrm = transforms
+        self.data = []
+        with open(annotation_file, 'r') as read_file:
+            for line in json_lines.reader(read_file):
+                self.data.append(line)
 
     def __len__(self):
         '''
             return the number of data points in the dataset
         '''
-        
+        return len(self.data)
 
     def __getitem__(self, idx):
         '''
@@ -44,5 +50,45 @@ class Dataset(object):
             4. Perform the desired transformations on the image.
             5. Return the dictionary of the transformed image and annotations as specified.
         '''
+        img_jpg_pth = "data/" + self.data[idx]["img_fn"]
+        img_png_pth = "data/" + self.data[idx]["png_ann_fn"]
 
-        
+        jpg_img = Image.open(img_jpg_pth).convert("RGB")
+        # jpg_img.show()
+        png_img = Image.open(img_png_pth)
+        # jpg_img.show()
+
+
+        # i = 0
+        for object in self.trnsfrm: # Applying transforms
+            jpg_img = object(jpg_img)
+            # jpg_img.save(f"output/{i}.png")
+            # i += 1
+
+        arr_jpg_img = np.asarray(jpg_img)
+        arr_jpg_img = np.transpose(arr_jpg_img, (2, 0, 1))
+        arr_jpg_img = arr_jpg_img/255
+
+        arr_png_img = np.asarray(png_img)
+        arr_png_img = arr_png_img/255
+        hgt, wdt = arr_png_img.shape
+        arr_png_img = np.reshape(arr_png_img, (hgt, wdt, 1))
+        arr_png_img = np.transpose(arr_png_img, (2, 0, 1))
+
+
+        ans = {}
+        ans["image"] = arr_jpg_img
+        ans["gt_png_ann"] = arr_png_img
+        ans["gt_bboxes"] = []
+
+        for i in self.data[idx]["bboxes"]:
+            ans["gt_bboxes"].append([i["category"]] + i["bbox"])
+
+        return ans
+
+if __name__ == '__main__':
+    obj = Dataset("Python_DS_Assignment\\data\\annotations.jsonl")
+    for i in obj.data:
+        print(i["png_ann_fn"])
+    print(type(obj.data))
+    print(obj[0])
