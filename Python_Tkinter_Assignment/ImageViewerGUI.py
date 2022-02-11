@@ -18,7 +18,7 @@ def fileClick(clicked, dataset, segmentor):
 	# Hint: Call the segmentor from here, then compute the output images from using the `plot_visualization` function and save it as an image.
 	# Once the output is computed it should be shown automatically based on choice the dropdown button is at.
 	# To have a better clarity, please check out the sample video.
-
+	pass
 	####### CODE REQUIRED (END) #######
 
 # `process` function definition starts from here.
@@ -29,7 +29,7 @@ def process(clicked):
 	# Should show the corresponding segmentation or bounding boxes over the input image wrt the choice provided.
 	# Note: this function will just show the output, which should have been already computed in the `fileClick` function above.
 	# Note: also you should handle the case if the user clicks on the `Process` button without selecting any image file.
-	
+	pass
 	####### CODE REQUIRED (END) #######
 
 # `main` function definition starts from here.
@@ -38,6 +38,8 @@ if __name__ == '__main__':
 	####### CODE REQUIRED (START) ####### (2 lines)
 	# Instantiate the root window.
 	# Provide a title to the root window.
+	root = Tk()
+	root.title("Image Segmentation and Bounding Boxes")
 	
 	####### CODE REQUIRED (END) #######
 
