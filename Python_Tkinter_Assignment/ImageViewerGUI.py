@@ -1,12 +1,16 @@
 ####### REQUIRED IMPORTS FROM THE PREVIOUS ASSIGNMENT #######
 from my_package.model import InstanceSegmentationModel
-from my_package.data import Dataset
-from my_package.analysis import plot_visualization
-from my_package.data.transforms import FlipImage, RescaleImage, BlurImage, CropImage, RotateImage
+from my_package.data.dataset import Dataset
+from my_package.analysis.visualize import plot_visualization
+from my_package.data.transforms.blur import BlurImage
+from my_package.data.transforms.rotate import RotateImage
+from my_package.data.transforms.rescale import RescaleImage
+from my_package.data.transforms.flip import FlipImage
+from my_package.data.transforms.crop import CropImage
 from PIL import Image
 
 ####### ADD THE ADDITIONAL IMPORTS FOR THIS ASSIGNMENT HERE #######
-
+from tkinter import *
 
 # Define the function you want to call when the filebrowser button is clicked.
 def fileClick(clicked, dataset, segmentor):
@@ -28,7 +32,7 @@ def process(clicked):
 	# Should show the corresponding segmentation or bounding boxes over the input image wrt the choice provided.
 	# Note: this function will just show the output, which should have been already computed in the `fileClick` function above.
 	# Note: also you should handle the case if the user clicks on the `Process` button without selecting any image file.
-
+	
 	####### CODE REQUIRED (END) #######
 
 # `main` function definition starts from here.
