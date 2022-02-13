@@ -76,7 +76,7 @@ def process(clicked):
 	img2 = ImageTk.PhotoImage(image_boundary_boxes)
 	img3 = ImageTk.PhotoImage(image_segmented)
 	
-	if clicked == "Segmentation":
+	if clicked.get() == "Segmentation":
 		img_lbl1 = Label(image=img1).grid(row=2, column=0)
 		img_lbl2 = Label(image=img3).grid(row=2, column=1)
 	else:
@@ -110,7 +110,7 @@ if __name__ == '__main__':
 	clicked = StringVar()
 	clicked.set(options[0])
 
-	e = Entry(root, width=70)
+	e = Entry(root, width=30)
 	e.grid(row=0, column=0)
 
 	####### CODE REQUIRED (START) #######
@@ -124,12 +124,12 @@ if __name__ == '__main__':
 	drop_box_btn = OptionMenu(root, clicked, *options).grid(row=0, column=1, padx=3, pady=1)
 
 	# Declared an exit button
-	exit_btn = Button(root, text="exit", command=root.quit).grid(row=0, column=4, padx=3, pady=1)
+	exit_btn = Button(root, text="exit", command=root.quit).grid(row=1, column=1, padx=3, pady=1)
 	####### CODE REQUIRED (END) #######
 
 	# This is a `Process` button, check out the sample video to know about its functionality
 	myButton = Button(root, text="Process", command=partial(process, clicked))
-	myButton.grid(row=1, column=3)
+	myButton.grid(row=1, column=0)
 
 	
 	####### CODE REQUIRED (START) ####### (1 line)
