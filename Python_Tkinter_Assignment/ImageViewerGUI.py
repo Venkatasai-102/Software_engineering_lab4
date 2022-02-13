@@ -28,6 +28,8 @@ def fileClick(clicked, dataset, segmentor):
 	global image_segmented
 	global image_boundary_boxes
 	global original_image
+	global img1, img2, img3
+	global img_lbl1, img_lbl2
 
 	file_path = filedialog.askopenfilename(initialdir="./data/imgs/", title="select a file", filetypes=(("jpg files", "*.jpg"), ("png files", "*.png"), ("jpeg files", "*.jpeg"), ("all files", "*.*")))
 
@@ -45,6 +47,17 @@ def fileClick(clicked, dataset, segmentor):
 	img_list = list(plot_visualization(img_arr, bboxes, classes, masks))
 	image_segmented = img_list[0]
 	image_boundary_boxes = img_list[1]
+	img1 = ImageTk.PhotoImage(original_image)
+	img2 = ImageTk.PhotoImage(image_boundary_boxes)
+	img3 = ImageTk.PhotoImage(image_segmented)
+	
+	if clicked.get() == "Segmentation":
+		img_lbl1 = Label(image=img1).grid(row=2, column=0)
+		img_lbl2 = Label(image=img3).grid(row=2, column=1)
+	else:
+		img_lbl1 = Label(image=img1).grid(row=2, column=0)
+		img_lbl2 = Label(image=img2).grid(row=2, column=1)
+
 	print("Image processing is completed")
 	####### CODE REQUIRED (END) #######
 
