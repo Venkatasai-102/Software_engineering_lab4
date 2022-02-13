@@ -8,16 +8,6 @@ def plot_visualization(image, bboxes, classes, masks): # Write the required argu
 	# Tip: keep the dimensions of the output image less than 800 to avoid RAM crashes.
 	image_orgnl = Image.fromarray(np.uint8(image)).convert("RGB")
 	image_orgn2 = Image.fromarray(np.uint8(image)).convert("RGB")
-	
-	for i, crd in enumerate(bboxes):
-		if i >= 3:
-			break
-
-		shp = [(crd[0][0], crd[0][1]), (crd[1][0], crd[1][1])]
-
-		img1 = ImageDraw.Draw(image_orgn2)
-		img1.text((crd[0][0]+10, crd[0][1]-10), classes[i], fill="red")
-		img1.rectangle(shp, outline ="red") # makinbg a border box
 
 	for i, crd in enumerate(bboxes):
 		if i >= 3:
@@ -47,6 +37,16 @@ def plot_visualization(image, bboxes, classes, masks): # Write the required argu
 					img_msk.putpixel((wd, ht), rnd_clr) # putting random color generated
 					
 		image_orgnl = Image.blend(image_orgnl, img_msk, 0.4) # blending one image over other
+
+	for i, crd in enumerate(bboxes):
+		if i >= 3:
+			break
+
+		shp = [(crd[0][0], crd[0][1]), (crd[1][0], crd[1][1])]
+
+		img1 = ImageDraw.Draw(image_orgn2)
+		img1.text((crd[0][0]+10, crd[0][1]-10), classes[i], fill="red")
+		img1.rectangle(shp, outline ="red") # makinbg a border box
 
 	return image_orgnl, image_orgn2
 	
