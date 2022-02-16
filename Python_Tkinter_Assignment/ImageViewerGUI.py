@@ -106,6 +106,7 @@ if __name__ == '__main__':
 	root = Tk()
 	root.title("Image Segmentation and Bounding Boxes")
 	root.minsize(200, 100)
+	root.configure(bg="#DEEDF0")
 	####### CODE REQUIRED (END) #######
 
 	# Setting up the segmentor model.
@@ -129,19 +130,21 @@ if __name__ == '__main__':
 	####### CODE REQUIRED (START) #######
 	# Declare the file browsing button
 	file_path = ""
-	file_browse_btn = Button(root, text="open a file", command=partial(fileClick, clicked, dataset, segmentor)).grid(row=0, column=0, padx=3, pady=1)
+	file_browse_btn = Button(root, text="open a file", command=partial(fileClick, clicked, dataset, segmentor), bg="#90E0EF").grid(row=0, column=0, padx=3, pady=1)
 	####### CODE REQUIRED (END) #######
 
 	####### CODE REQUIRED (START) #######
 	# Declare the drop-down button
-	drop_box_btn = OptionMenu(root, clicked, *options).grid(row=0, column=1, padx=3, pady=1)
+	drop_box_btn = OptionMenu(root, clicked, *options)
+	drop_box_btn.grid(row=0, column=1, padx=3, pady=1)
+	drop_box_btn.config(bg="#90E0EF")
 
 	# Declared an exit button
-	exit_btn = Button(root, text="exit", command=root.quit).grid(row=1, column=1, padx=3, pady=1)
+	exit_btn = Button(root, text="exit", command=root.quit, bg="#90E0EF").grid(row=1, column=1, padx=3, pady=1)
 	####### CODE REQUIRED (END) #######
 
 	# This is a `Process` button, check out the sample video to know about its functionality
-	myButton = Button(root, text="Process", command=partial(process, clicked))
+	myButton = Button(root, text="Process", command=partial(process, clicked), bg="#90E0EF")
 	myButton.grid(row=1, column=0)
 
 	
